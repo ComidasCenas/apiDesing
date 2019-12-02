@@ -1,0 +1,28 @@
+components:
+  schemas:
+    recipes:
+      type: object
+      properties:
+        metadata:
+          $ref: 'metadata.yml#/components/schemas/metadata'
+        recipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipe'
+    recipe:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre de la receta
+        relatedRecipes:
+          type: array
+          items:
+            $ref: '#/components/schemas/recipe'
+        ingredients:
+          type: array
+          items:
+            $ref: 'ingerdients.yml#/components/schemas/ingredient'
+        recipeSteps:
+          type: string
+          description: Pasos de la receta

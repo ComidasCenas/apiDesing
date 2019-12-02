@@ -17,6 +17,12 @@ get:
         application/json:
           schema:
             $ref: '../schemas/user.yml#/components/schemas/user'
+    401:
+      description: La petición viene sin token de sesion
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
     403:
       description: Token invalido
       content:
@@ -41,12 +47,13 @@ patch:
     un token de un solo uso para identificar al usuario
   security:
     - user: [write]
-  parameters:
-    - in: body
-      name: password
-      required: true
-      schema:
-        $ref: '../schemas/user.yml#/components/schemas/user-password'
+  requestBody:
+    description: Información del cambio de password
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/user.yml#/components/schemas/user-password'
   responses:
     201:
       description: El password se ha actualizado con éxito
@@ -60,6 +67,12 @@ patch:
         application/json:
           schema:
             $ref: '../schemas/error.yml#/components/schemas/error'
+    401:
+      description: La petición viene sin token de sesion
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
     403:
       description: Token expirado
       content:
@@ -68,6 +81,60 @@ patch:
             $ref: '../schemas/error.yml#/components/schemas/error'
     500:
       description: Error controlado del back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+put:
+  description: Modificación completa de un usuario
+  security:
+    - user: [write]
+  requestBody:
+    description: Objeto que representa los datos de un único usuario
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/user.yml#/components/schemas/user'
+  parameters:
+    - in: header
+      name: authorization
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: Usuario modificado con éxito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/message.yml#/components/schemas/message'
+    400:
+      description: El cuerpo del mensaje no tiene el formato adecuado
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    401:
+      description: La petición viene sin el token de sesion
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    403:
+      description: El token ha caducado
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    404:
+      description: El usuario a modifcar no se encuentra en la base de datos
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado en el back
       content:
         application/json:
           schema:

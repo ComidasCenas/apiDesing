@@ -1,0 +1,11 @@
+components:
+  schemas:
+    ingredient:
+      type: object
+      properties:
+        name:
+          type: string
+          description: Nombre del ingrediente
+        quantity:
+          type: string
+          description: Cantidad del ingrediente

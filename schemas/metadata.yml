@@ -1,0 +1,20 @@
+components:
+  schemas:
+    metadata:
+      type: object
+      properties:
+        offset:
+          type: number
+          description: Indice de inicio del resultado
+        limit:
+          type: number
+          description: Tamaño máximo de los resultados
+        total:
+          type: number
+          description: Numero total de resultados
+        sort:
+          type: string
+          description: Campo por el que se ordenan los resultados
+        direction:
+          type: integer
+          description: Sentido de la ordenación (0 ascendente, 1 descendente)

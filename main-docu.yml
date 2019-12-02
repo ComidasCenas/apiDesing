@@ -12,6 +12,8 @@ paths:
     $ref: './paths/user.yml'
   /users:
     $ref: './paths/users.yml'
+  /recipes:
+    $ref: './paths/recipes.yml'
 
 components:
   securitySchemes:

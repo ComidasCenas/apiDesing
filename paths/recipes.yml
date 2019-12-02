@@ -1,0 +1,72 @@
+get:
+  description: Consulta de recetas
+  security:
+    - user: [read]
+  parameters:
+    - in: query
+      name: name
+      description: Nombre de la recetas
+      required: false
+      schema:
+        type: string
+    - in: query
+      name: limit
+      description: Número máximo de resultados
+      required: true
+      schema:
+        type: integer
+    - in: query
+      name: offset
+      description: El indice de inicio del listado de resultados
+      required: true
+      schema:
+        type: integer
+    - in: query
+      name: sort
+      description: Campo por el que ordenar la lista
+      required: false
+      schema:
+        type: string
+    - in: query
+      name: direction
+      description: Define si la ordenación es ascendente (0) o descendente (1)
+      required: false
+      schema:
+        type: integer
+    - in: header
+      name: authorization
+      description: Token de sesion
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: La consulta se ha realizado con exito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/recipes.yml#/components/schemas/recipes'
+    400:
+      description: Petición mal formada
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    401:
+      description: Petición sin token de sesion
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    403:
+      description: Petición con token incorrecto
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado del back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
