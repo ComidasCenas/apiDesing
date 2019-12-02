@@ -1,0 +1,25 @@
+openapi: 3.0.0
+info:
+  title: Comidas y cenas
+  description: Api para el app de comidas y cenas
+  version: 1.0.0
+paths:
+  /login:
+    $ref: './paths/paths.yml'
+  /notification:
+    $ref: './paths/notification.yml'
+  /users/{code}:
+    $ref: './paths/user.yml'
+  /users:
+    $ref: './paths/users.yml'
+
+components:
+  securitySchemes:
+    user:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: http://localhost
+          scopes:
+            read: auth
+            write: auth

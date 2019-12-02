@@ -1,0 +1,39 @@
+post:
+  description: Da de alta un nuevo usuario
+  parameters:
+    - in: body
+      name: email
+      required: true
+      schema:
+        type: string
+    - in: body
+      name: password
+      required: true
+      schema:
+        type: string
+  responses:
+    201:
+      description: Usuario creado con exito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/message.yml#/components/schemas/message'
+    400:
+      description:
+        Email sin el formato adecuado. Password débil
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    409:
+      description: Usuario ya existe
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado del back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'

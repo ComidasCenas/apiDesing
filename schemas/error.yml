@@ -1,0 +1,11 @@
+components:
+  schemas:
+    error:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensaje de error
+        code:
+          type: string
+          description: Código de error

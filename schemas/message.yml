@@ -1,0 +1,8 @@
+components:
+  schemas:
+    message:
+      type: object
+      properties:
+        message:
+          type: string
+          description: Mensjae de aviso al front

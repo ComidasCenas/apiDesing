@@ -1,0 +1,17 @@
+components:
+  schemas:
+    user-password:
+      type: object
+      properties:
+        password:
+          type: string
+          description: password del usuario
+    user:
+      type: object
+      properties:
+        email:
+          type: string
+          description: email del usuarios
+        password:
+          type: string
+          description: password del usuario

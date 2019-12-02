@@ -1,0 +1,74 @@
+get:
+  description: 
+    Lectura de los datos del usuario. El código de la url es
+    la clave primaria del usuario
+  security:
+    - user: [read]
+  parameters:
+    - in: header
+      name: authorization
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: Consulta de usuario finalizada con exito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/user.yml#/components/schemas/user'
+    403:
+      description: Token invalido
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    404:
+      description: No se encuentra usuario
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado del path
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+patch:
+  description: 
+    Actualiza el password del usuario. El código de la url es
+    un token de un solo uso para identificar al usuario
+  security:
+    - user: [write]
+  parameters:
+    - in: body
+      name: password
+      required: true
+      schema:
+        $ref: '../schemas/user.yml#/components/schemas/user-password'
+  responses:
+    201:
+      description: El password se ha actualizado con éxito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/message.yml#/components/schemas/message'
+    400:
+      description: Password debil
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    403:
+      description: Token expirado
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado del back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'

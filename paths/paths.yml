@@ -1,0 +1,38 @@
+get:
+  description: Acción de login de usuario en la app
+  parameters:
+    - in: query
+      name: user
+      required: true
+      schema:
+        type: string
+    - in: query
+      name: password
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: Logado con exito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/token.yml#/components/schemas/token'
+    401:
+      description: Usuario o password incorrecto
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    400:
+      description: Petición mal formada
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error en el back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'

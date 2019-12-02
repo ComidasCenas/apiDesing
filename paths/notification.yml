@@ -1,0 +1,40 @@
+get:
+  description: Envio de notificaiones al usuario
+  parameters:
+    - in: query
+      name: type
+      required: true
+      schema:
+        type: string
+    - in: query
+      name: email
+      required: true
+      schema:
+        type: string
+  responses:
+    200:
+      description: Notificación enviada con exito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/message.yml#/components/schemas/message'
+    400:
+      description: Formato de tipo o email erroneos
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    404:
+      description: 
+        No se encuentra plantilla asociada al tipo de notificación o
+        No se encuentra usuario asociado al email
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado en el back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'

@@ -1,0 +1,8 @@
+components:
+  schemas:
+    token:
+      type: object
+      properties:
+        token:
+          type: string
+          description: Token de usuario
