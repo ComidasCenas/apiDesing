@@ -1,0 +1,23 @@
+components:
+  schemas:
+    menu:
+      type: object
+      properties:
+        name:
+          type: string
+        photo:
+          type: string
+          format: binary
+        week:
+          type: array
+          items:
+            $ref: './dias.yml#/components/schemas/dias'
+    menus:
+      type: object
+      properties:
+        metadata:
+          $ref: './metadata.yml#/components/schemas/metadata'
+        menus:
+          type: array
+          items:
+            $ref: '#/components/schemas/menu'

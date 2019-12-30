@@ -1,0 +1,21 @@
+get:
+  description: Consulta para obtener el detalle de un menú
+  responses:
+    200:
+      description: Devuelve los datos de una recenta
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/menus.yml#/components/schemas/menu'
+    404:
+      description: El menú buscado no existe
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado del back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'

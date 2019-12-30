@@ -1,0 +1,58 @@
+get:
+  description: Resultado de búsqueda de menús
+  properties:
+    - in: query
+      name: name
+      required: false
+      description: Nombre del menu
+      schema:
+        type: string
+    - in: query
+      name: recipe
+      required: false
+      description: Nombre de una recenta contenida en un menú
+      schema:
+        type: string
+    - in: query
+      name: offset
+      required: true
+      description: Indice inicial de la lista
+      schema:
+        type: integer
+    - in: query
+      name: limit
+      required: true
+      description: Tamaño de la lista
+      schema:
+        type: integer
+    - in: query
+      name: sort
+      required: false
+      description: Campo por el que ordenar
+      schema:
+        type: string
+    - in: query
+      name: direction
+      required: false
+      description: Sentido de la ordenación
+      schema:
+        type: integer
+  responses:
+    200:
+      description: Se devuelve el listado de recentas
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/menus.yml#/components/schemas/menus'
+    400:
+      description: Se han enviado parametros con valores erroneos
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlador del back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'

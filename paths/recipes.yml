@@ -1,7 +1,5 @@
 get:
   description: Consulta de recetas
-  security:
-    - user: [read]
   parameters:
     - in: query
       name: name

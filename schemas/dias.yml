@@ -1,0 +1,13 @@
+components:
+  schemas:
+    dias:
+      type: object
+      properties:
+        comida:
+          type: array
+          items:
+            $ref: './recipes.yml#/components/schemas/recipe'
+        cena:
+          type: array
+          items:
+            $ref: './recipes.yml#/components/schemas/recipe'

@@ -1,0 +1,22 @@
+get:
+  description:
+    Peticion para obtener el detalle de una receta
+  responses:
+    200:
+      description: Encuentra la recenta buscada
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/recipes.yml#/components/schemas/recipe'
+    404:
+      description: No se ha encontrado la receta
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado en el back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
