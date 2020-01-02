@@ -41,6 +41,39 @@ get:
         application/json:
           schema:
             $ref: '../schemas/error.yml#/components/schemas/error'
+post:
+  description: Creación de un nuevo usuario
+  requestBody:
+    description: Objeto JSON que representa a un usuario
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/user.yml#/components/schemas/user'
+  responses:
+    201:
+      description: El usuario se ha creado con exito
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/message.yml#/components/schemas/message'
+    400:
+      description: Algunos de los parametros de entrada no vienen informados de forma correcta
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    409:
+      description: El usuario ya existe
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado en el back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
 patch:
   description: 
     Actualiza el password del usuario. El código de la url es

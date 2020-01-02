@@ -68,3 +68,41 @@ get:
         application/json:
           schema:
             $ref: '../schemas/error.yml#/components/schemas/error'
+post:
+  description: Dar de alta una nueva recetas
+  security:
+    - user: [write]
+  requestBody:
+    description: Objeto json que representa una receta
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../schemas/recipes.yml#/components/schemas/recipe'
+  responses:
+    201:
+      description: Receta creada con exito
+    400:
+      description: El cuerpo del mensaje no tiene el formato adecuado
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    401:
+      description: La petición viene sin el token de sesión
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    403:
+      description: El token ha caducado
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
+    500:
+      description: Error controlado en el back
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/error.yml#/components/schemas/error'
